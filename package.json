@@ -1,0 +1,13 @@
+{
+  "name": "napkin-app",
+  "version": "0.2.1",
+  "description": "",
+  "main": "main.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^1.7.9",
+    "electron-localshortcut": "^2.0.2"
+  }
+}
