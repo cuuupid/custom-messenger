@@ -35,11 +35,18 @@ app.on('ready', () => {
         }
         else {
             hideTab = true
-            win.webContents.insertCSS(`._1enh { display: unset }`)
+            win.webContents.insertCSS(`._1enh { display: unset; }`)
         }
     })
     win.loadURL('https://messenger.com/login/')
     win.webContents.on('dom-ready', (e, d) => {
-        win.webContents.insertCSS(`body { overflow: hidden !important; } ._1enh { display: none } ._1q5- { background-color: ${bgColor} }._nd_ ._hh7 { background-color: ${myMsgColor} !important; color: ${fgColor}; font-weight: 400; } h2 { color: ${fgColor} !important; } ._2v6o { color: ${fgColor} !important; } ._30yy { border-radius: 100px; background-color: ${fgColor} !important; opacity: 1 !important; } ._4rv9 { background: none !important; } ._5rpb { color: ${fgColor}; } ._4ld- { border: solid; border-color: ${fgColor}; border-width: 2px; border-radius: 1000px; } time { color: ${fgColor} }`)
+        win.webContents.insertCSS(`body { overflow: hidden !important; }` +
+        `._1enh { display: none; background-color: ${bgColor} }` + 
+        `._1q5- { background-color: ${bgColor} }` +
+        `._nd_ ._hh7 { background-color: ${myMsgColor} !important; color: ${fgColor}; }` +
+        `h2, ._2v6o, time, ._ih3, ._1tqi, ._1ht6, ._5rpb, ._1htf, ._1ht7 { color: ${fgColor} !important; }` +
+        `._30yy { border-radius: 100px; background-color: ${fgColor} !important; opacity: 1 !important; }` +
+        `._4rv9 { background: none !important; }` + 
+        `._4ld- { border: solid; border-color: ${fgColor}; border-width: 2px; border-radius: 1000px; }`)
     })
 })
