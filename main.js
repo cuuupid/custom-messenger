@@ -1,5 +1,5 @@
 const electron = require('electron')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Tray } = require('electron')
 const shortcut = require('electron-localshortcut');
 
 const fgColor = "#f8f8f8"
@@ -7,8 +7,11 @@ const myMsgColor = "#288"
 const bgColor = "#284472" // #284472 is also pretty cool, as are #248 and #288
 
 var hideTab = false
+let tray = null
+var open = false
 
-app.on('ready', () => {
+var launch = () => {
+    open = true
     let win = new BrowserWindow({
         width: 600, height: 675, icon: __dirname + '/messenger.ico',        
         webPreferences: {
@@ -19,10 +22,10 @@ app.on('ready', () => {
     })
     let s = electron.screen.getPrimaryDisplay().workAreaSize
     let _s = win.getSize()
-    win.on('closed', () => { win = null })
+    win.on('closed', () => { win = null; open = false })
     shortcut.register(win, 'Ctrl+Backspace',
      () => { if(win.webContents.canGoBack()) win.webContents.goBack() });
-    shortcut.register(win, 'Ctrl+Q', () => { app.quit() });
+    shortcut.register(win, 'Ctrl+Q', () => { open = false; win.close() });
     shortcut.register(win, 'Ctrl+M', () => { win.minimize() })
     shortcut.register(win, 'Ctrl+Shift+F', 
     () => { win.setFullScreen(!win.isFullScreen()); win.center() })
@@ -49,4 +52,16 @@ app.on('ready', () => {
         `._4rv9 { background: none !important; }` + 
         `._4ld- { border: solid; border-color: ${fgColor}; border-width: 2px; border-radius: 1000px; }`)
     })
+}
+
+app.on('ready', () => {
+    tray = new Tray('./messenger.ico')
+    tray.on('click', () => {
+        if (!open) launch()
+    })
+    tray.on('right-click', () => {
+        app.quit()
+        tray.destroy()
+    })
+    launch()
 })
