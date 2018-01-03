@@ -3,14 +3,14 @@ const { app, BrowserWindow } = require('electron')
 const shortcut = require('electron-localshortcut');
 
 const fgColor = "#f8f8f8"
-const myMsgColor = "#19d8c1"
-const bgColor = "#244" // #284472 is also pretty cool, as are #248 and #288
+const myMsgColor = "#288"
+const bgColor = "#284472" // #284472 is also pretty cool, as are #248 and #288
 
 var hideTab = false
 
 app.on('ready', () => {
     let win = new BrowserWindow({
-        width: 600, height: 660, icon: __dirname + '/messenger.ico',        
+        width: 600, height: 675, icon: __dirname + '/messenger.ico',        
         webPreferences: {
             plugins: true,
             nodeIntegration: false
@@ -40,6 +40,6 @@ app.on('ready', () => {
     })
     win.loadURL('https://messenger.com/login/')
     win.webContents.on('dom-ready', (e, d) => {
-        win.webContents.insertCSS(`._1enh { display: none } ._1q5- { background-color: ${bgColor} }._hh7 ._nd_ { background-color: ${myMsgColor} !important; color: ${fgColor}; font-weight: 600; } h2 { color: ${fgColor} !important; } ._2v6o { color: ${fgColor} !important; } ._30yy { border-radius: 100px; background-color: ${fgColor} !important; opacity: 1 !important; } ._4rv9 { background: none !important; } ._5rpb { color: ${fgColor}; } ._4ld- { border: solid; border-color: ${fgColor}; border-width: 2px; border-radius: 1000px; } time { color: ${fgColor} }`)
+        win.webContents.insertCSS(`body { overflow: hidden !important; } ._1enh { display: none } ._1q5- { background-color: ${bgColor} }._nd_ ._hh7 { background-color: ${myMsgColor} !important; color: ${fgColor}; font-weight: 400; } h2 { color: ${fgColor} !important; } ._2v6o { color: ${fgColor} !important; } ._30yy { border-radius: 100px; background-color: ${fgColor} !important; opacity: 1 !important; } ._4rv9 { background: none !important; } ._5rpb { color: ${fgColor}; } ._4ld- { border: solid; border-color: ${fgColor}; border-width: 2px; border-radius: 1000px; } time { color: ${fgColor} }`)
     })
 })
