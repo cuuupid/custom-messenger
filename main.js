@@ -43,14 +43,37 @@ var launch = () => {
     })
     win.loadURL('https://messenger.com/login/')
     win.webContents.on('dom-ready', (e, d) => {
-        win.webContents.insertCSS(`body { overflow: hidden !important; }` +
-        `._1enh { display: none; background-color: ${bgColor} }` + 
-        `._1q5- { background-color: ${bgColor} }` +
-        `._nd_ ._hh7 { background-color: ${myMsgColor} !important; color: ${fgColor}; }` +
-        `h2, ._2v6o, time, ._ih3, ._1tqi, ._1ht6, ._5rpb, ._1htf, ._1ht7 { color: ${fgColor} !important; }` +
-        `._30yy { border-radius: 100px; background-color: ${fgColor} !important; opacity: 1 !important; }` +
-        `._4rv9 { background: none !important; }` + 
-        `._4ld- { border: solid; border-color: ${fgColor}; border-width: 2px; border-radius: 1000px; } ._5742 { -webkit-app-region: drag }`)
+        win.webContents.insertCSS(`
+        body { overflow: hidden !important; }
+        ._1enh { 
+            display: none; 
+            background-color: ${bgColor} 
+        }
+        ._1q5- { 
+            background-color: ${bgColor} 
+        }
+        ._nd_ ._hh7 { 
+            background-color: ${myMsgColor} !important; 
+            color: ${fgColor}; 
+        }
+        h2, ._2v6o, time, ._ih3, ._1tqi, ._1ht6, ._5rpb, ._1htf, ._1ht7 { 
+            color: ${fgColor} !important; 
+        }
+        ._30yy { 
+            border-radius: 100px;
+            background-color: ${fgColor} !important;
+            opacity: 1 !important; 
+        }
+        ._4rv9 { background: none !important; }
+        ._4ld- { 
+            border: solid; 
+            border-color: ${fgColor}; 
+            border-width: 2px; 
+            border-radius: 1000px; 
+        }
+        ._5742 { -webkit-app-region: drag }
+        ._fl2 { -webkit-app-region: no-drag }
+        `)
     })
 }
 
