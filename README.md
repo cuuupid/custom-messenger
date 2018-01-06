@@ -21,3 +21,8 @@ You need electron-packager.
 ## Close?
 
 Right click tray icon.
+
+## Electron Install not working?
+
+Try and then install electron
+`npm i`
