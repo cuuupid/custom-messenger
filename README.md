@@ -24,5 +24,6 @@ Right click tray icon.
 
 ## Electron Install not working?
 
-Try and then install electron
+Try 
 `npm i`
+and then install electron
