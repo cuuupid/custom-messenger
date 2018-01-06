@@ -14,9 +14,11 @@ Global installation better so you can use `electron` CLI.
 
 ## Create exe for actual use?
 
-You need electron-packager.
+You need electron-packager. To install look at `https://github.com/electron-userland/electron-packager` 
 
 `electron-packager . FapkinChat`
+
+Go to the folder named FapkinChat and move the messenger.ico, then run FapkinChat.exe
 
 ## Close?
 
