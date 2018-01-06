@@ -3,7 +3,7 @@
 A fully featured Facebook Messenger desktop app, beautifully and minimally made with Electron.
 
 <p align="center">
-    <img src="./img/img1.gif" width="50%" alt="Cate Desktop Preview">
+    <img src="./img/img1.png" width="50%" alt="Fapkin Preview">
 </p>
 
 
