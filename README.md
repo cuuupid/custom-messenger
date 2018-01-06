@@ -2,6 +2,16 @@
 
 A fully featured Facebook Messenger desktop app, beautifully and minimally made with Electron.
 
+<p align="center">
+    <img src="./img/img1.gif" width="50%" alt="Cate Desktop Preview">
+</p>
+
+
+<p align="center">
+    <img src="./img/screencap.gif" width="50%" alt="Fapkin Preview">
+</p>
+
+
 # I want to Use
 
 Executables coming soon. If you're electron-friendly, please feel free to build and upload executables to this repo!
