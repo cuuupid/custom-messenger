@@ -82,7 +82,7 @@ app.on('ready', () => {
     tray = new Tray('./messenger.ico')
     tray.on('click', () => {
         if (!open) launch()
-        app.focus()
+        else app.focus()
     })
     tray.on('right-click', () => {
         app.quit()
