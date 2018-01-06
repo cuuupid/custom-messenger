@@ -24,8 +24,9 @@ var launch = () => {
     let _s = win.getSize()
     win.on('closed', () => { win = null; open = false })
     shortcut.register(win, 'Ctrl+Backspace',
-     () => { if(win.webContents.canGoBack()) win.webContents.goBack() });
-    shortcut.register(win, 'Ctrl+Q', () => { open = false; win.close() });
+     () => { if(win.webContents.canGoBack()) win.webContents.goBack() })
+    shortcut.register(win, 'Ctrl+Q', () => { open = false; win.close() })
+    shortcut.register(win, 'Ctrl+R', () => { win.reload() })
     shortcut.register(win, 'Ctrl+M', () => { win.minimize() })
     shortcut.register(win, 'Ctrl+Shift+F', 
     () => { win.setFullScreen(!win.isFullScreen()); win.center() })
