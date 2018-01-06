@@ -9,10 +9,11 @@ const bgColor = "#284472" // #284472 is also pretty cool, as are #248 and #288
 var hideTab = false
 let tray = null
 var open = false
+var win;
 
 var launch = () => {
     open = true
-    let win = new BrowserWindow({
+    win = new BrowserWindow({
         width: 600, height: 675, icon: __dirname + '/messenger.ico',        
         webPreferences: {
             plugins: true,
@@ -82,7 +83,10 @@ app.on('ready', () => {
     tray = new Tray('./messenger.ico')
     tray.on('click', () => {
         if (!open) launch()
-        else app.focus()
+        else {
+            app.focus()
+            win.focus()
+        }
     })
     tray.on('right-click', () => {
         app.quit()
