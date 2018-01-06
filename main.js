@@ -6,10 +6,10 @@ const fgColor = "#f8f8f8"
 const myMsgColor = "#288"
 const bgColor = "#284472" // #284472 is also pretty cool, as are #248 and #288
 
-var hideTab = false
+var hideTab = true
 let tray = null
 var open = false
-var win;
+var win
 
 var launch = () => {
     open = true
@@ -48,8 +48,7 @@ var launch = () => {
         win.webContents.insertCSS(`
         body { overflow: hidden !important; }
         ._1enh { 
-            display: none; 
-            background-color: ${bgColor} 
+           background-color: ${bgColor} 
         }
         ._1q5- { 
             background-color: ${bgColor} 
