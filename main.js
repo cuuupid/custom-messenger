@@ -65,6 +65,10 @@ var launch = () => {
             background-color: ${fgColor} !important;
             opacity: 1 !important; 
         }
+        ._39bl {
+            background: none !important;
+            color: ${fgColor} !important;
+        }
         ._4rv9 { background: none !important; }
         ._4ld- { 
             border: solid; 
