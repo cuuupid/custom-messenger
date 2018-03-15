@@ -50,7 +50,7 @@ var launch = () => {
         ._1enh { 
            background-color: ${bgColor} 
         }
-        ._1q5- { 
+        ._1t2u { 
             background-color: ${bgColor} 
         }
         ._nd_ ._hh7 { 
@@ -60,6 +60,7 @@ var launch = () => {
         h2, ._2v6o, time, ._ih3, ._1tqi, ._1ht6, ._5rpb, ._1htf, ._1ht7 { 
             color: ${fgColor} !important; 
         }
+        /* Button */
         ._30yy { 
             border-radius: 100px;
             background-color: ${fgColor} !important;
@@ -76,7 +77,8 @@ var launch = () => {
             border-width: 2px; 
             border-radius: 1000px; 
         }
-        ._5742 { -webkit-app-region: drag }
+        /* Top region */
+        ._673w { -webkit-app-region: drag }
         ._fl2 { -webkit-app-region: no-drag }
         `)
     })
