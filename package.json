@@ -1,13 +1,61 @@
 {
-  "name": "napkin-app",
-  "version": "0.2.1",
-  "description": "",
-  "main": "main.js",
-  "scripts": {},
+  "name": "custom-messenger",
+  "version": "0.4.4",
+  "description": "Facebook Messenger, in elegant desktop form. Highly customizable.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^1.7.9",
-    "electron-localshortcut": "^2.0.2"
+    "electron-compile": "^6.4.2",
+    "electron-localshortcut": "^2.0.2",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/pshah123/custom-messenger.git"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^5.1.1",
+    "electron-prebuilt-compile": "1.8.3"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm"
+      },
+      "electronWinstallerConfig": {
+        "name": "napkin_app"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "napkinapp"
+      }
+    }
   }
 }
