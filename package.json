@@ -8,7 +8,14 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-  "author": "",
+  "lets": {
+    "get": {
+      "lunch": {
+        "email": "shah at priansh dot com"
+      }
+    }
+  },
+  "author": "Priansh Shah",
   "license": "ISC",
   "dependencies": {
     "electron-compile": "^6.4.2",
