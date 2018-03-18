@@ -1,0 +1,15 @@
+module.exports = {
+    /* DO NOT EDIT ANYTHING ABOVE THIS */
+
+    /* edit these 4 values */
+    backgroundColor: '#000',
+
+    foregroundColor: '#f8f8f8',
+
+    messageColor: 'rgba(0,0,0,0)',
+
+    enabled: false
+    /**********************/
+
+    /* DO NOT EDIT ANYTHING BELOW THIS */
+}
