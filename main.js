@@ -1,12 +1,15 @@
+let DEBUG = true
+
 const electron = require('electron')
 const { app, BrowserWindow, Tray, Menu } = require('electron')
 const shortcut = require('electron-localshortcut')
-var {
-    backgroundColor, foregroundColor, messageColor, defaultTheme
-} = require('./theme.txt')
 const shell = require('electron').shell
 const path = require('path')
+let THEME = path.join(__dirname, 'theme.txt')
 
+var {
+    backgroundColor, foregroundColor, messageColor, defaultTheme
+} = require(THEME)
 const slateBgColor = "#2B303B"
 const slateFgColor = "#8DBB88"
 const slateMsgColor = "rgba(0,0,0,0)"
@@ -23,46 +26,50 @@ var bgColor = darkBgColor // #284472 is also pretty cool, as are #248 and #288
 var msgTextColor = fgColor
 
 // Options: custom, invCustom, dark, light, original, venom
-
-switch(defaultTheme) {
-    case 'custom': fgColor = foregroundColor;
-    bgColor = backgroundColor;
-    myMsgColor = messageColor;
-    msgTextColor = fgColor;
-    break;
-    case 'invCustom': fgColor = backgroundColor;
-    bgColor = foregroundColor;
-    myMsgColor = fgColor;
-    msgTextColor = messageColor;
-    break;
-    case 'dark': fgColor = darkFgColor;
-    bgColor = darkBgColor;
-    myMsgColor = darkMsgColor;
-    msgTextColor = fgColor;
-    break;
-    case 'light': fgColor = lightFgColor;
-    bgColor = lightBgColor;
-    myMsgColor = darkMsgColor;
-    msgTextColor = fgColor;
-    break
-    case 'venom': fgColor = slateFgColor;
-    bgColor = slateBgColor;
-    myMsgColor = slateMsgColor;
-    msgTextColor = fgColor;
-    break;
-    default: fgColor = lightFgColor;
-    bgColor = lightBgColor;
-    myMsgColor = null;
-    msgTextColor = fgColor;
-    break;
+var setTheme = (theme) => {
+    switch(theme) {
+        case 'custom': fgColor = foregroundColor;
+        bgColor = backgroundColor;
+        myMsgColor = messageColor;
+        msgTextColor = fgColor;
+        break;
+        case 'invCustom': fgColor = backgroundColor;
+        bgColor = foregroundColor;
+        myMsgColor = fgColor;
+        msgTextColor = messageColor;
+        break;
+        case 'dark': fgColor = darkFgColor;
+        bgColor = darkBgColor;
+        myMsgColor = darkMsgColor;
+        msgTextColor = fgColor;
+        break;
+        case 'light': fgColor = lightFgColor;
+        bgColor = lightBgColor;
+        myMsgColor = darkMsgColor;
+        msgTextColor = fgColor;
+        break
+        case 'venom': fgColor = slateFgColor;
+        bgColor = slateBgColor;
+        myMsgColor = slateMsgColor;
+        msgTextColor = fgColor;
+        break;
+        default: fgColor = lightFgColor;
+        bgColor = lightBgColor;
+        myMsgColor = null;
+        msgTextColor = fgColor;
+        break;
+    }
+    if (DEBUG) {
+        console.log('Theme: ' + theme)
+        console.log('Foreground: ' + fgColor)
+        console.log('Background: ' + bgColor)
+        console.log('Message: ' + myMsgColor)
+        console.log('Default Theme: ' + defaultTheme)
+        console.log('Message Text: ' + msgTextColor)
+    }
 }
 
-if (enabled) {
-    fgColor = foregroundColor
-    bgColor = backgroundColor
-    myMsgColor = messageColor
-    msgTextColor = fgColor
-}
+setTheme(defaultTheme)
 
 var hideTab = true
 let tray = null
@@ -173,73 +180,64 @@ app.on('ready', () => {
             {
                 label: 'Dark',
                 click: (i,w,e) => {
-                    fgColor = darkFgColor
-                    bgColor = darkBgColor
-                    myMsgColor = darkMsgColor
-                    msgTextColor = fgColor
+                    setTheme('dark')
                     win.reload()
                 }
             },
             {
                 label: 'Light',
                 click: (i,w,e) => {
-                    fgColor = lightFgColor
-                    bgColor = lightBgColor
-                    myMsgColor = darkMsgColor
-                    msgTextColor = fgColor
+                    setTheme('light')
                     win.reload()
                 }
             },
             {
                 label: 'Original',
                 click: (i,w,e) => {
-                    fgColor = lightFgColor
-                    bgColor = lightBgColor
-                    myMsgColor = null
-                    msgTextColor = fgColor
+                    setTheme('original')
                     win.reload()
                 }
             },            {
                 label: 'Venom',
                 click: (i,w,e) => {
-                    fgColor = slateFgColor
-                    bgColor = slateBgColor
-                    myMsgColor = slateMsgColor
-                    msgTextColor = fgColor
+                    setTheme('venom')
                     win.reload()
                 }
             },
             {
                 label: 'Custom',
                 click: (i,w,e) => {
-                    delete require.cache[require.resolve('./theme.txt')]
+                    delete require.cache[require.resolve(THEME)]
                     var {
-                        backgroundColor, foregroundColor, messageColor, enabled
-                    } = require('./theme.txt')                    
-                    fgColor = foregroundColor
-                    bgColor = backgroundColor
-                    myMsgColor = messageColor
-                    msgTextColor = fgColor
+                        backgroundColor, foregroundColor, messageColor, defaultTheme
+                    } = require(THEME)
+                    setTheme('custom')
                     win.reload()
                 }
             },
             {
                 label: 'Inv. Custom',
                 click: (i,w,e) => {
-                    delete require.cache[require.resolve('./theme.txt')]                    
+                    delete require.cache[require.resolve(THEME)]
                     var {
-                        backgroundColor, foregroundColor, messageColor, enabled
-                    } = require('./theme.txt')                    
-                    fgColor = backgroundColor
-                    bgColor = foregroundColor
-                    myMsgColor = fgColor
-                    msgTextColor = messageColor
+                        backgroundColor, foregroundColor, messageColor, defaultTheme
+                    } = require(THEME)
+                    setTheme('invCustom')
                     win.reload()
                 }
             }
         ]},
         {label: 'Customize', click: (i,w,e) => {
-            shell.openItem(path.join(__dirname, 'theme.txt'))
+            shell.openItem(THEME)
+        }},
+        {label: 'Full Reload', click: (i,w,e) => {
+            delete require.cache[require.resolve(THEME)]
+            var {
+                backgroundColor, foregroundColor, messageColor, defaultTheme
+            } = require(THEME)
+            setTheme(defaultTheme)
+            win.destroy()
+            launch()
         }},
         {type: 'separator'},
         {role: 'quit'}
