@@ -1,15 +1,49 @@
 module.exports = {
     /* DO NOT EDIT ANYTHING ABOVE THIS */
 
-    /* edit these 4 values */
+
+
+    /* Edit these 4 values, keep everything within the quotes!!!! */
+
+
+
     backgroundColor: '#000',
 
     foregroundColor: '#f8f8f8',
 
-    messageColor: 'rgba(0,0,0,0)',
+    messageColor: 'rgba(141,187,136,0)',
 
-    enabled: false
+
+
+    // Options: custom, invCustom, dark, light, original, venom
+
+    defaultTheme: 'original'
+
+
+
+
+
+
+
+
+
+
+
+
     /**********************/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /* DO NOT EDIT ANYTHING BELOW THIS */
 }

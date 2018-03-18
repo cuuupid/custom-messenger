@@ -2,7 +2,7 @@ const electron = require('electron')
 const { app, BrowserWindow, Tray, Menu } = require('electron')
 const shortcut = require('electron-localshortcut')
 var {
-    backgroundColor, foregroundColor, messageColor, enabled
+    backgroundColor, foregroundColor, messageColor, defaultTheme
 } = require('./theme.txt')
 const shell = require('electron').shell
 const path = require('path')
@@ -21,6 +21,41 @@ var fgColor = darkFgColor
 var myMsgColor = darkMsgColor
 var bgColor = darkBgColor // #284472 is also pretty cool, as are #248 and #288
 var msgTextColor = fgColor
+
+// Options: custom, invCustom, dark, light, original, venom
+
+switch(defaultTheme) {
+    case 'custom': fgColor = foregroundColor;
+    bgColor = backgroundColor;
+    myMsgColor = messageColor;
+    msgTextColor = fgColor;
+    break;
+    case 'invCustom': fgColor = backgroundColor;
+    bgColor = foregroundColor;
+    myMsgColor = fgColor;
+    msgTextColor = messageColor;
+    break;
+    case 'dark': fgColor = darkFgColor;
+    bgColor = darkBgColor;
+    myMsgColor = darkMsgColor;
+    msgTextColor = fgColor;
+    break;
+    case 'light': fgColor = lightFgColor;
+    bgColor = lightBgColor;
+    myMsgColor = darkMsgColor;
+    msgTextColor = fgColor;
+    break
+    case 'venom': fgColor = slateFgColor;
+    bgColor = slateBgColor;
+    myMsgColor = slateMsgColor;
+    msgTextColor = fgColor;
+    break;
+    default: fgColor = lightFgColor;
+    bgColor = lightBgColor;
+    myMsgColor = null;
+    msgTextColor = fgColor;
+    break;
+}
 
 if (enabled) {
     fgColor = foregroundColor
@@ -177,6 +212,7 @@ app.on('ready', () => {
             {
                 label: 'Custom',
                 click: (i,w,e) => {
+                    delete require.cache[require.resolve('./theme.txt')]
                     var {
                         backgroundColor, foregroundColor, messageColor, enabled
                     } = require('./theme.txt')                    
@@ -190,6 +226,7 @@ app.on('ready', () => {
             {
                 label: 'Inv. Custom',
                 click: (i,w,e) => {
+                    delete require.cache[require.resolve('./theme.txt')]                    
                     var {
                         backgroundColor, foregroundColor, messageColor, enabled
                     } = require('./theme.txt')                    
